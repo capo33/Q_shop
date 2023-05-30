@@ -4,7 +4,9 @@ import cors from "cors";
 
 import connectDB from "./config/db.js";
 
-import products from "./data/products.js";
+import productRoutes from "./routes/Product.routes.js";
+
+import { errorHandler, notFound } from "./middlewares/errorMiddleware.js";
 
 // Load env variables
 dotenv.config();
@@ -12,7 +14,7 @@ dotenv.config();
 // Initialize express
 const app = express();
 
-// Start server
+// Set port
 const PORT = process.env.PORT || 5000;
 
 // Connect to MongoDB
@@ -23,17 +25,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
+// Welcome route
 app.get("/", (req, res) => {
   res.json({ message: "API is running..." });
 });
 
-app.get("/api/v1/products", (req, res) => {
-  res.json(products);
-});
+// Routes
+app.use("/api/v1/products", productRoutes);
 
-app.get("/api/v1/products/:id", (req, res) => {
-  const product = products.find((p) => p._id === Number(req.params.id));
-  res.json(product);
-});
+// Error middlewares
+app.use(notFound);
+app.use(errorHandler);
 
+// Start server
 app.listen(PORT, console.log(`Server running on port ${PORT}`));

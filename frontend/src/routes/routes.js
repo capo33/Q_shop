@@ -4,7 +4,7 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 
-import PrivateRoute from "../components/PrivateRoute";
+import PrivateRoute from "../components/Guards/PrivateRoute";
 import App from "../App";
 import HomeScreen from "../screens/HomeScreen";
 import CartScreen from "../screens/CartScreen";
@@ -16,6 +16,8 @@ import PaymentScreen from "../screens/PaymentScreen";
 import PlaceOrderScreen from "../screens/PlaceOrderScreen";
 import OrderScreen from "../screens/OrderScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import AdminRoute from "../components/Guards/AdminRoute";
+import OrderListScreen from "../screens/admin/OrderListScreen";
 
 const routes = createBrowserRouter(
   createRoutesFromElements(
@@ -32,7 +34,9 @@ const routes = createBrowserRouter(
         <Route path='/placeorder' element={<PlaceOrderScreen />} />
         <Route path='/order/:id' element={<OrderScreen />} />
         <Route path='/profile' element={<ProfileScreen />} />
-
+      </Route>
+      <Route path="" element={<AdminRoute />}>
+        <Route path='/admin/orderlist' element={<OrderListScreen />} />
       </Route>
     </Route>
   )

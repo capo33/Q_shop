@@ -8,6 +8,8 @@ dotenv.config();
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/User.routes.js";
 import productRoutes from "./routes/Product.routes.js";
+import orderRoutes from "./routes/Order.routes.js";
+
 import { errorHandler, notFound } from "./middlewares/errorMiddleware.js";
 
 // Initialize express
@@ -38,6 +40,7 @@ app.get("/", (req, res) => {
 // Routes
 app.use("/api/v1/products", productRoutes);
 app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/orders", orderRoutes);
 
 // Error middlewares
 app.use(notFound);

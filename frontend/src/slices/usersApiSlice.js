@@ -27,16 +27,18 @@ export const usersApiSlice = apiSlice.injectEndpoints({
       }),
     }),
 
+    profile: builder.mutation({
+      query: (userData) => ({
+        url: `${USER_URL}/profile`,
+        method: "PUT",
+        body: userData,
+        credentials: "include",
+      }),
+    }),
+
     // getUserDetails: builder.query({
     //   query: () => ({
     //     url: `${USER_URL}/profile`,
-    //   }),
-    // }),
-    // updateUserProfile: builder.mutation({
-    //   query: (updatedUser) => ({
-    //     url: `${USER_URL}/profile`,
-    //     method: "PUT",
-    //     body: updatedUser,
     //   }),
     // }),
 
@@ -74,8 +76,8 @@ export const {
   useRegisterUserMutation,
   useLoginUserMutation,
   useLogoutUserMutation,
+  useProfileMutation,
   // useGetUserDetailsQuery,
-  // useUpdateUserProfileMutation,
   // useGetUsersQuery,
   // useGetUserDetailsByIdQuery,
   // useUpdateUserMutation,

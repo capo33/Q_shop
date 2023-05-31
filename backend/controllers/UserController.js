@@ -97,8 +97,8 @@ const logoutUser = asyncHandler(async (req, res) => {
 // @desc    Get user profile
 // @route   GET /api/v1/users/profile
 // @access  Private
-// no need to pass id because we are getting it from the token
 const getUserProfile = asyncHandler(async (req, res) => {
+  // no need to pass id because we are getting user id from authMiddleware (protect)
   const user = await UserModel.findById(req.user?._id);
 
   if (user) {

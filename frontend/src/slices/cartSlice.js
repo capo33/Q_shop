@@ -30,16 +30,19 @@ const cartSlice = createSlice({
     removeFromCart(state, action) {
       const id = action.payload;
       state.cartItems = state.cartItems.filter((x) => x._id !== id);
-
       return updateCart(state);
     },
     saveShippingAddress(state, action) {
       state.shippingAddress = action.payload;
-      return updateCart(state);
+      localStorage.setItem("cart", JSON.stringify(state));
     },
     savePaymentMethod(state, action) {
       state.paymentMethod = action.payload;
-      return updateCart(state);
+      localStorage.setItem("cart", JSON.stringify(state));
+    },
+    clearCartItems(state) {
+      state.cartItems = [];
+      localStorage.setItem("cart", JSON.stringify(state));
     },
   },
 });
@@ -49,6 +52,7 @@ export const {
   removeFromCart,
   saveShippingAddress,
   savePaymentMethod,
+  clearCartItems,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

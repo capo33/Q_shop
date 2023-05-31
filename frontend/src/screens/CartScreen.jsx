@@ -16,12 +16,9 @@ import Message from "../components/Message";
 import { addToCart, removeFromCart } from "../slices/cartSlice";
 
 const CartScreen = () => {
-  const { id: productId } = useParams();
-
   const { cartItems } = useSelector((state) => state.cart);
-
+console.log('cartItems', cartItems);
   const navigate = useNavigate();
-  const location = useLocation();
   const dispatch = useDispatch();
 
   const getCartCount = () => {
@@ -38,6 +35,7 @@ const CartScreen = () => {
   // this will help to change the qty of the product in the cart
   const addToCartHandler = async (product, qty) => {
     dispatch(addToCart({ ...product, qty }));
+    console.log("product", product);
   };
 
   const removeFromCartHandler = (id) => {

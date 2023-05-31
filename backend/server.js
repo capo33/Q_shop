@@ -25,12 +25,12 @@ connectDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors(
-  {
+app.use(
+  cors({
     origin: "http://localhost:3000",
     credentials: true,
-  }
-));
+  })
+);
 
 // Welcome route
 app.get("/", (req, res) => {
@@ -41,6 +41,13 @@ app.get("/", (req, res) => {
 app.use("/api/v1/products", productRoutes);
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/orders", orderRoutes);
+
+// PayPal route
+app.get("/api/v1/config/paypal", (req, res) =>
+  res.send({
+    clientId: process.env.PAYPAL_CLIENT_ID,
+  })
+);
 
 // Error middlewares
 app.use(notFound);

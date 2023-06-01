@@ -36,16 +36,19 @@ export const usersApiSlice = apiSlice.injectEndpoints({
       }),
     }),
 
+    // admin routes
+    // Get all users
+    getUsers: builder.query({
+      query: () => ({
+        url: `${USER_URL}`,
+      }),
+      providesTags: ["User"],
+      keepUnusedDataFor: 5,
+    }),
+
     // getUserDetails: builder.query({
     //   query: () => ({
     //     url: `${USER_URL}/profile`,
-    //   }),
-    // }),
-
-    // // admin routes
-    // getUsers: builder.query({
-    //   query: () => ({
-    //     url: `${USER_URL}`,
     //   }),
     // }),
 
@@ -77,9 +80,9 @@ export const {
   useLoginUserMutation,
   useLogoutUserMutation,
   useProfileMutation,
+  useGetUsersQuery,
   // useGetUserDetailsQuery,
-  // useGetUsersQuery,
+  // useDeleteUserMutation,
   // useGetUserDetailsByIdQuery,
   // useUpdateUserMutation,
-  // useDeleteUserMutation,
 } = usersApiSlice;

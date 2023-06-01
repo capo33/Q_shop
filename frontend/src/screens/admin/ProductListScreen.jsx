@@ -45,7 +45,6 @@ const ProductListScreen = () => {
     }
   };
 
-
   return (
     <>
       <Row className='align-items-center'>
@@ -65,7 +64,7 @@ const ProductListScreen = () => {
       </Row>
       {isLoadingCreate && <Loader />}
       {isLoadingDelete && <Loader />}
-      
+
       {isLoading ? (
         <Loader />
       ) : error ? (
@@ -92,17 +91,14 @@ const ProductListScreen = () => {
                   <td>{product.category}</td>
                   <td>{product.brand}</td>
                   <td>
-                    <LinkContainer
-                      to={`/admin/product/${product._id}/edit`}
-                      style={{ background: "blue" }}
-                    >
-                      <Button className='btn-sm mx-2'>
+                    <LinkContainer to={`/admin/product/${product._id}/edit`}>
+                      <Button variant='light' className='btn-sm mx-2'>
                         <FaEdit />
                       </Button>
                     </LinkContainer>
                     <Button
+                      variant='danger'
                       className='btn-sm'
-                      style={{ background: "red" }}
                       onClick={() => deleteHandler(product._id)}
                     >
                       <FaTrash style={{ color: "white" }} />

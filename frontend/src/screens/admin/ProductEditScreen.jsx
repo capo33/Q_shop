@@ -74,10 +74,9 @@ const ProductEditScreen = () => {
     }
   }, [product]);
 
-
   const uploadFileHandler = async (e) => {
     const formData = new FormData();
-    formData.append('image', e.target.files[0]);
+    formData.append("image", e.target.files[0]);
     try {
       const res = await uploadProductImage(formData).unwrap();
       toast.success(res.message);
@@ -127,7 +126,7 @@ const ProductEditScreen = () => {
                 type='text'
                 placeholder='Enter image url'
                 value={image}
-                onChange={(e) => setImage( e.target.value)}
+                onChange={(e) => setImage(e.target.value)}
               ></Form.Control>
               <Form.Control
                 type='file'

@@ -10,6 +10,7 @@ import Message from "../../components/Message";
 import {
   useGetProductsQuery,
   useCreateProductMutation,
+  useDeleteProductMutation,
 } from "../../slices/productsApiSlice";
 
 const ProductListScreen = () => {
@@ -18,7 +19,8 @@ const ProductListScreen = () => {
   const [createProduct, { isLoading: isLoadingCreate }] =
     useCreateProductMutation();
 
-  const dispatch = useDispatch();
+  const [deleteProduct, { isLoading: isLoadingDelete }] =
+    useDeleteProductMutation();
 
   const createProductHandler = async () => {
     if (window.confirm("Are you sure you want to create a new product?")) {
@@ -31,9 +33,18 @@ const ProductListScreen = () => {
     }
   };
 
-  const deleteHandler = (id) => {
-    console.log("deleteHandler" + id);
+  const deleteHandler = async (id) => {
+    if (window.confirm("Are you sure you want to delete this product?")) {
+      try {
+        await deleteProduct(id);
+        toast.success("Product deleted successfully");
+        refetch();
+      } catch (err) {
+        toast.error(err?.data?.message || err.message || err?.error);
+      }
+    }
   };
+
 
   return (
     <>
@@ -53,6 +64,8 @@ const ProductListScreen = () => {
         </Col>
       </Row>
       {isLoadingCreate && <Loader />}
+      {isLoadingDelete && <Loader />}
+      
       {isLoading ? (
         <Loader />
       ) : error ? (

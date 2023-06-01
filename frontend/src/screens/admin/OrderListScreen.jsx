@@ -11,8 +11,7 @@ import { useGetOrdersQuery } from "../../slices/orderApiSlice";
 const OrderListScreen = () => {
   const { data: orders, isLoading, error } = useGetOrdersQuery();
   const dispatch = useDispatch();
-  console.log(orders);
-  return <>
+   return <>
     <h1>Orders</h1>
     {isLoading ? (
       <Loader />  

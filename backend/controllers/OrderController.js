@@ -93,13 +93,13 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 const updateOrderToDelivered = asyncHandler(async (req, res) => {
   const order = await OrderModel.findById(req.params.id);
-
+  console.log(order);
   if (order) {
     order.isDelivered = true;
     order.deliveredAt = Date.now();
 
     const updatedOrder = await order.save();
-
+    console.log(updatedOrder);
     res.status(200).json(updatedOrder);
   } else {
     res.status(404);

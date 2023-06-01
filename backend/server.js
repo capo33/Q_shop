@@ -3,6 +3,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+
 // Load env variables
 dotenv.config();
 
@@ -34,10 +35,6 @@ app.use(
   })
 );
 
-// Welcome route
-app.get("/", (req, res) => {
-  res.json({ message: "API is running..." });
-});
 
 // Routes
 app.use("/api/v1/products", productRoutes);
@@ -54,12 +51,34 @@ app.get("/api/v1/config/paypal", (req, res) =>
 
 // Make uploads folder static
 // dirname is not available when using ES modules, we set __dirname to current directory
-const __dirname = path.resolve(); 
-app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+if (process.env.NODE_ENV === "production") {
+  const __dirname = path.resolve();
+  app.use("/uploads", express.static("/var/data/uploads"));
+  app.use(express.static(path.join(__dirname, "/frontend/build")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
+  );
+} else {
+  const __dirname = path.resolve();
+  app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+
+// Welcome route
+app.get("/", (req, res) => {
+  res.json({
+    message: "API is running...",
+    path: path.join(__dirname, "/uploads")
+  });
+});
+}
+
+ 
 
 // Error middlewares
 app.use(notFound);
 app.use(errorHandler);
 
 // Start server
-app.listen(PORT, console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+});

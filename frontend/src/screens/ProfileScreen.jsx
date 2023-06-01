@@ -3,7 +3,7 @@ import { Table, Form, Button, Row, Col } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { FaTimes } from "react-icons/fa";
+import { FaTimes, FaCheck } from "react-icons/fa";
 
 import Loader from "../components/Loader";
 import Message from "../components/Message";
@@ -140,14 +140,21 @@ const ProfileScreen = () => {
                   <td>€{order.totalPrice}</td>
                   <td>
                     {order.isPaid ? (
-                      order.paidAt?.substring(0, 10)
+                      <>
+                        {order.paidAt?.substring(0, 10)}{" "}
+                        <FaCheck style={{ color: "green" }} />
+                      </>                    
+
                     ) : (
                       <FaTimes style={{ color: "red" }} />
                     )}
                   </td>
                   <td>
                     {order.isDelivered ? (
-                      order.deliveredAt?.substring(0, 10)
+                      <>
+                        {order.deliveredAt?.substring(0, 10)}{" "}
+                        <FaCheck style={{ color: "green" }} />
+                      </>
                     ) : (
                       <FaTimes style={{ color: "red" }} />
                     )}

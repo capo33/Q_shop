@@ -8,7 +8,8 @@ export const productsApiSlice = apiSlice.injectEndpoints({
       query: () => ({
         url: PRODUCT_URL,
       }),
-      providesTags: ["Products"],  // that we don't want to reload the page when we update a product
+      // that we don't want to reload the page when we update a product
+      providesTags: ["Products"],  
       keepUnusedDataFor: 5,
     }),
     // Get a single product

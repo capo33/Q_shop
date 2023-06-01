@@ -1,3 +1,4 @@
+import path from "path";
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
@@ -9,6 +10,7 @@ import connectDB from "./config/db.js";
 import userRoutes from "./routes/User.routes.js";
 import productRoutes from "./routes/Product.routes.js";
 import orderRoutes from "./routes/Order.routes.js";
+import uploadRoutes from "./routes/Upload.routes.js";
 
 import { errorHandler, notFound } from "./middlewares/errorMiddleware.js";
 
@@ -41,6 +43,7 @@ app.get("/", (req, res) => {
 app.use("/api/v1/products", productRoutes);
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/orders", orderRoutes);
+app.use("/api/v1/upload", uploadRoutes);
 
 // PayPal route
 app.get("/api/v1/config/paypal", (req, res) =>
@@ -48,6 +51,11 @@ app.get("/api/v1/config/paypal", (req, res) =>
     clientId: process.env.PAYPAL_CLIENT_ID,
   })
 );
+
+// Make uploads folder static
+// dirname is not available when using ES modules, we set __dirname to current directory
+const __dirname = path.resolve(); 
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 // Error middlewares
 app.use(notFound);

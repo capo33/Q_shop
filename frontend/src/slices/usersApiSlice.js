@@ -54,25 +54,31 @@ export const usersApiSlice = apiSlice.injectEndpoints({
       }),
     }),
 
-    // getUserDetails: builder.query({
-    //   query: () => ({
-    //     url: `${USER_URL}/profile`,
-    //   }),
-    // }),
+    // Get user details
+    getUserDetails: builder.query({
+      query: (userId) => ({
+        url: `${USER_URL}/${userId}`,
+      }),
+      keepUnusedDataFor: 5,
+    }),
 
+    // Update user
+    updateUser: builder.mutation({
+      query: (userData) => ({
+        url: `${USER_URL}/${userData.userId}`,
+        method: "PUT",
+        body: userData,
+      }),
+      // invalidatesTags means that when this mutation is called, it will invalidate the cache for the "User" tag
+      invalidatesTags: ["User"], 
+      
+    }),
     // getUserDetailsById: builder.query({
     //   query: (userId) => ({
     //     url: `${USER_URL}/${userId}`,
     //   }),
     // }),
 
-    // updateUser: builder.mutation({
-    //   query: (updatedUser) => ({
-    //     url: `${USER_URL}/${updatedUser._id}`,
-    //     method: "PUT",
-    //     body: updatedUser,
-    //   }),
-    // }),
 
     // deleteUser: builder.mutation({
     //   query: (userId) => ({
@@ -90,7 +96,8 @@ export const {
   useProfileMutation,
   useGetUsersQuery,
   useDeleteUserMutation,
-  // useGetUserDetailsQuery,
+  useGetUserDetailsQuery,
+  useUpdateUserMutation,
   // useGetUserDetailsByIdQuery,
   // useUpdateUserMutation,
 } = usersApiSlice;

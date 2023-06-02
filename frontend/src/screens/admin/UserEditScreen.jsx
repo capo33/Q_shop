@@ -27,7 +27,6 @@ const UserEditScreen = () => {
     error,
     refetch,
   } = useGetUserDetailsQuery(userId);
-  console.log(user);
 
   const [updateUser, { isLoading: isLoadingUpdate }] = useUpdateUserMutation();
 
@@ -41,7 +40,6 @@ const UserEditScreen = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("submitHandler");
     try {
       await updateUser({ userId, name, email, isAdmin });
       toast.success("User updated successfully");

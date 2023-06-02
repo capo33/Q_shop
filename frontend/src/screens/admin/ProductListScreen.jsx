@@ -21,7 +21,6 @@ const ProductListScreen = () => {
     pageNumber,
   });
   const { products = [] } = data || {};
-  console.log(data?.page);
 
   const [createProduct, { isLoading: isLoadingCreate }] =
     useCreateProductMutation();

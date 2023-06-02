@@ -39,7 +39,6 @@ const PlaceOrderScreen = () => {
         totalPrice: cart?.totalPrice,
       }).unwrap(); // unwrap() is used to get the actual response from the server from the promise returned by the createOrder() function
       dispatch(clearCartItems());
-      console.log(res);
       navigate(`/order/${res?._id}`);
     } catch (err) {
       console.log(err?.data?.message);

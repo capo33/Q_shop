@@ -35,7 +35,6 @@ const CartScreen = () => {
   // this will help to change the qty of the product in the cart
   const addToCartHandler = async (product, qty) => {
     dispatch(addToCart({ ...product, qty }));
-    console.log("product", product);
   };
 
   const removeFromCartHandler = (id) => {

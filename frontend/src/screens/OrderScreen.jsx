@@ -98,7 +98,6 @@ const OrderScreen = () => {
   };
 
   const deliverHandler = async () => {
-    console.log(order);
     try {
       await deliveredOrder(orderId);
       refetch(); //to update the order details

@@ -32,7 +32,6 @@ const ProductEditScreen = () => {
     error,
     refetch,
   } = useGetProductDetailsQuery(productId);
-  console.log(product);
 
   const [updateProduct, { isLoading: isLoadingUpdate }] =
     useUpdateProductMutation();
@@ -132,8 +131,8 @@ const ProductEditScreen = () => {
                 label='Choose File'
                 onChange={uploadFileHandler}
               ></Form.Control>
-              {isLoadingImageUpload && <Loader />}
             </Form.Group>
+            {isLoadingImageUpload && <Loader />}
 
             <Form.Group controlId='brand'>
               <Form.Label>Brand</Form.Label>

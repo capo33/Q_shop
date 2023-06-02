@@ -35,7 +35,6 @@ app.use(
   })
 );
 
-
 // Routes
 app.use("/api/v1/products", productRoutes);
 app.use("/api/v1/users", userRoutes);
@@ -50,12 +49,13 @@ app.get("/api/v1/config/paypal", (req, res) =>
 );
 
 // Make uploads folder static
-// dirname is not available when using ES modules, we set __dirname to current directory
 if (process.env.NODE_ENV === "production") {
+  // dirname is not available when using ES modules, we set __dirname to current directory
   const __dirname = path.resolve();
   app.use("/uploads", express.static("/var/data/uploads"));
   app.use(express.static(path.join(__dirname, "/frontend/build")));
 
+  // for any route that is not api, redirect to index.html
   app.get("*", (req, res) =>
     res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
   );
@@ -63,16 +63,14 @@ if (process.env.NODE_ENV === "production") {
   const __dirname = path.resolve();
   app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
-// Welcome route
-app.get("/", (req, res) => {
-  res.json({
-    message: "API is running...",
-    path: path.join(__dirname, "/uploads")
+  // Welcome route
+  app.get("/", (req, res) => {
+    res.json({
+      message: "API is running...",
+      path: path.join(__dirname, "/uploads"),
+    });
   });
-});
 }
-
- 
 
 // Error middlewares
 app.use(notFound);

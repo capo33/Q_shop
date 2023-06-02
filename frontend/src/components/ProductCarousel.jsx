@@ -8,7 +8,7 @@ import { useGetTopProductsQuery } from "./../slices/productsApiSlice";
 
 const ProductCarousel = () => {
   const { data: products, isLoading, error } = useGetTopProductsQuery();
-  console.log(products);
+
   return isLoading ? (
     <Loader />
   ) : error ? (
@@ -18,11 +18,7 @@ const ProductCarousel = () => {
       {products.map((product) => (
         <Carousel.Item key={product._id}>
           <Link to={`/products/${product._id}`}>
-            <Image
-              src={product.image}
-              alt={product.name}
-              fluid
-             />
+            <Image src={product.image} alt={product.name} fluid />
             <Carousel.Caption className='carousel-caption'>
               <h2>
                 {product.name} (${product.price})

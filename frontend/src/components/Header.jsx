@@ -1,9 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { LinkContainer } from "react-router-bootstrap";
-import { Nav, Navbar, Container, Badge, NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { LinkContainer } from "react-router-bootstrap";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
+import { Nav, Navbar, Container, Badge, NavDropdown } from "react-bootstrap";
 
 import SearchBox from "./SearchBox";
 import Logo from "../assets/logo.jpg";

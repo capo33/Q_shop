@@ -4,24 +4,24 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 
-import PrivateRoute from "../components/Guards/PrivateRoute";
 import App from "../App";
 import HomeScreen from "../screens/HomeScreen";
 import CartScreen from "../screens/CartScreen";
+import OrderScreen from "../screens/OrderScreen";
+import PaymentScreen from "../screens/PaymentScreen";
+import ProfileScreen from "../screens/ProfileScreen";
 import ProductScreen from "../screens/ProductScreen";
 import LoginScreen from "../screens/auth/LoginScreen";
 import ShippingScreen from "../screens/ShippingScreen";
-import RegisterScreen from "../screens/auth/RegisterScreen";
-import PaymentScreen from "../screens/PaymentScreen";
-import PlaceOrderScreen from "../screens/PlaceOrderScreen";
-import OrderScreen from "../screens/OrderScreen";
-import ProfileScreen from "../screens/ProfileScreen";
 import AdminRoute from "../components/Guards/AdminRoute";
+import PlaceOrderScreen from "../screens/PlaceOrderScreen";
+import RegisterScreen from "../screens/auth/RegisterScreen";
+import UserListScreen from "../screens/admin/UserListScreen";
+import UserEditScreen from "../screens/admin/UserEditScreen";
+import PrivateRoute from "../components/Guards/PrivateRoute";
 import OrderListScreen from "../screens/admin/OrderListScreen";
 import ProductListScreen from "../screens/admin/ProductListScreen";
 import ProductEditScreen from "../screens/admin/ProductEditScreen";
-import UserListScreen from "../screens/admin/UserListScreen";
-import UserEditScreen from "../screens/admin/UserEditScreen";
 
 const routes = createBrowserRouter(
   createRoutesFromElements(

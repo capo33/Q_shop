@@ -1,10 +1,9 @@
 import React from "react";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import { LinkContainer } from "react-router-bootstrap";
 import { Table, Button, Row, Col } from "react-bootstrap";
-import { FaTimes, FaEdit, FaTrash } from "react-icons/fa";
 
 import Loader from "../../components/Loader";
 import Message from "../../components/Message";

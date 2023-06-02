@@ -1,8 +1,7 @@
 import React from "react";
-import { LinkContainer } from "react-router-bootstrap";
 import { Table, Button } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
 import { FaTimes, FaCheck } from "react-icons/fa";
+import { LinkContainer } from "react-router-bootstrap";
 
 import Loader from "../../components/Loader";
 import Message from "../../components/Message";
@@ -10,8 +9,8 @@ import { useGetOrdersQuery } from "../../slices/orderApiSlice";
 
 const OrderListScreen = () => {
   const { data: orders, isLoading, error } = useGetOrdersQuery();
-  const dispatch = useDispatch();
-   return <>
+
+  return <>
     <h1>Orders</h1>
     {isLoading ? (
       <Loader />  

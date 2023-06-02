@@ -45,7 +45,7 @@ const CartScreen = () => {
   const checkoutHandler = () => {
     navigate("/login?redirect=/shipping"); // redirect to login page if not logged in and then redirect to shipping page after login is successful
   };
-  
+
   return (
     <Row>
       <Col md={8}>
@@ -109,7 +109,6 @@ const CartScreen = () => {
                 className='btn-block'
                 disabled={cartItems.length === 0}
                 onClick={checkoutHandler}
-                // onClick={() => navigate("/login?redirect=shipping")}
               >
                 Proceed To Checkout
               </Button>

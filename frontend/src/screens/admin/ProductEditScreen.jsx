@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { Form, Button } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { FaArrowLeft } from "react-icons/fa";
 import { toast } from "react-toastify";
+import { FaArrowLeft } from "react-icons/fa";
+import { Form, Button } from "react-bootstrap";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import {
   useGetProductDetailsQuery,

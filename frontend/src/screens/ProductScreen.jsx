@@ -13,16 +13,15 @@ import {
 } from "react-bootstrap";
 import { toast } from "react-toastify";
 
-import Rating from "../components/Rating";
-import Loader from "../components/Loader";
-import Message from "../components/Message";
-import { addToCart } from "../slices/cartSlice";
-
 import {
   useGetProductDetailsQuery,
   useCreateReviewMutation,
 } from "../slices/productsApiSlice";
+import Rating from "../components/Rating";
+import Loader from "../components/Loader";
 import Meta from "../components/Meta/Meta";
+import Message from "../components/Message";
+import { addToCart } from "../slices/cartSlice";
 
 const ProductScreen = () => {
   const { id } = useParams();

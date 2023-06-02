@@ -4,11 +4,20 @@ import { apiSlice } from "./apiSlice";
 export const productsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     // Get all products
+    // getProducts: builder.query({
+    //   query: () => ({
+    //     url: PRODUCT_URL,
+    //   }),
+    //   // that we don't want to reload the page when we update a product
+    //   keepUnusedDataFor: 5,
+    //   providesTags: ["Products"],
     getProducts: builder.query({
-      query: () => ({
+      query: ({ pageNumber }) => ({
         url: PRODUCT_URL,
+        params: {
+          pageNumber,
+        },
       }),
-      // that we don't want to reload the page when we update a product
       keepUnusedDataFor: 5,
       providesTags: ["Products"],
     }),
@@ -67,7 +76,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Products"],
     }),
-  }), 
+  }),
   // we don't need to get the reviews because we are going to get them from the product details
 });
 

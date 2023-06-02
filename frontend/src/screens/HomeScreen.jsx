@@ -9,13 +9,15 @@ import { useGetProductsQuery } from "../slices/productsApiSlice";
 import Paginate from "../components/Paginate";
 
 const HomeScreen = () => {
-  const { pageNumber } = useParams();
-  console.log(pageNumber);
+  const { pageNumber, keyword } = useParams();
   // this is the old one without pagination
   // const { data: products = [], isLoading, error } = useGetProductsQuery();
 
   // this is the new one with pagination
-  const { data, isLoading, error } = useGetProductsQuery({ pageNumber });
+  const { data, isLoading, error } = useGetProductsQuery({
+    keyword,
+    pageNumber,
+  });
   const { products = [] } = data || {};
 
   return (
@@ -36,7 +38,11 @@ const HomeScreen = () => {
               </Col>
             ))}
           </Row>
-          <Paginate pages={data?.pages} page={data?.page} />
+          <Paginate
+            pages={data?.pages}
+            page={data?.page}
+            keyword={keyword ? keyword : ""}
+          />
         </>
       )}
     </>

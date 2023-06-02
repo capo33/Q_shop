@@ -5,6 +5,7 @@ import { Nav, Navbar, Container, Badge, NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
 
+import SearchBox from "./SearchBox";
 import Logo from "../assets/logo.jpg";
 import { logout } from "../slices/authSlice";
 import { useLogoutUserMutation } from "../slices/usersApiSlice";
@@ -48,6 +49,7 @@ const Header = () => {
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ms-auto'>
+            <SearchBox />
               <LinkContainer to='/cart'>
                 <Nav.Link>
                   <FaShoppingCart /> Cart

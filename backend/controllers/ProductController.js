@@ -10,19 +10,21 @@ const getProducts = asyncHandler(async (req, res) => {
   // we get the total number of products
   // const count = await ProductModel.countDocuments({});
 
-  const keyword = req.query.keyword ? {
-    name: {
-      $regex: req.query.keyword,
-      $options: "i", // case insensitive search
-    },
-  } : {};
+  const keyword = req.query.keyword
+    ? {
+        name: {
+          $regex: req.query.keyword,
+          $options: "i", // case insensitive search
+        },
+      }
+    : {};
 
   // we add the keyword to the count because we want to get the total number of products that match the keyword and we want to limit the count
-  const count = await ProductModel.countDocuments({ ...keyword }); 
-  
-   // we add the keyword to the find because we want to get the products that match the keyword  
-  const products = await ProductModel.find({ ...keyword }) 
-  .limit(pageSize)
+  const count = await ProductModel.countDocuments({ ...keyword });
+
+  // we add the keyword to the find because we want to get the products that match the keyword
+  const products = await ProductModel.find({ ...keyword })
+    .limit(pageSize)
     .skip(pageSize * (page - 1)); // we get the products for the current page and we skip the products from the previous pages
 
   res.status(200).json({
@@ -45,6 +47,14 @@ const getProductById = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error("Product not found");
   }
+});
+
+// @desc    Get top rated products
+// @route   GET /api/v1/products/top
+// @access  Public
+const getTopProducts = asyncHandler(async (req, res) => {
+  const products = await ProductModel.find({}).sort({ rating: -1 }).limit(3);
+  res.status(200).json(products);
 });
 
 // @desc    Create a product
@@ -169,4 +179,5 @@ export {
   updateProduct,
   deleteProduct,
   createProductReview,
+  getTopProducts,
 };

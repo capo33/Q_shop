@@ -48,9 +48,13 @@ app.get("/api/v1/config/paypal", (req, res) =>
   })
 );
 
+// dirname is not available when using ES modules, we set __dirname to current directory
+
+const __dirname = path.resolve();
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+
 // Make uploads folder static
 if (process.env.NODE_ENV === "production") {
-  // dirname is not available when using ES modules, we set __dirname to current directory
   const __dirname = path.resolve();
   app.use("/uploads", express.static("/var/data/uploads"));
   app.use(express.static(path.join(__dirname, "/frontend/build")));
@@ -60,9 +64,6 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
   );
 } else {
-  const __dirname = path.resolve();
-  app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
-
   // Welcome route
   app.get("/", (req, res) => {
     res.json({

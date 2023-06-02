@@ -22,6 +22,7 @@ import {
   useGetProductDetailsQuery,
   useCreateReviewMutation,
 } from "../slices/productsApiSlice";
+import Meta from "../components/Meta/Meta";
 
 const ProductScreen = () => {
   const { id } = useParams();
@@ -65,6 +66,9 @@ const ProductScreen = () => {
 
   return (
     <>
+      <Link className='btn btn-light my-3' to='/'>
+        Go Back
+      </Link>
       {isLoading ? (
         <Loader />
       ) : error ? (
@@ -73,9 +77,7 @@ const ProductScreen = () => {
         </Message>
       ) : (
         <>
-          <Link className='btn btn-light my-3' to='/'>
-            Go Back
-          </Link>
+          <Meta title={product?.name} />
           {product && (
             <>
               <Row>

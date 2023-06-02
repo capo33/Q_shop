@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   Row,
@@ -17,7 +17,7 @@ import { addToCart, removeFromCart } from "../slices/cartSlice";
 
 const CartScreen = () => {
   const { cartItems } = useSelector((state) => state.cart);
-console.log('cartItems', cartItems);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -45,6 +45,7 @@ console.log('cartItems', cartItems);
   const checkoutHandler = () => {
     navigate("/login?redirect=/shipping"); // redirect to login page if not logged in and then redirect to shipping page after login is successful
   };
+  
   return (
     <Row>
       <Col md={8}>

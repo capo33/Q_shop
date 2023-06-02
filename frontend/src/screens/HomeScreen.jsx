@@ -6,17 +6,18 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import Product from "../components/Product";
 import { useGetProductsQuery } from "../slices/productsApiSlice";
+import Paginate from "../components/Paginate";
 
 const HomeScreen = () => {
-  const { pageNumber  } = useParams();
-console.log(pageNumber);
+  const { pageNumber } = useParams();
+  console.log(pageNumber);
   // this is the old one without pagination
-  // const { data: products = [], isLoading, error } = useGetProductsQuery(); 
-  
+  // const { data: products = [], isLoading, error } = useGetProductsQuery();
+
   // this is the new one with pagination
-  const { data, isLoading, error } = useGetProductsQuery({pageNumber});
+  const { data, isLoading, error } = useGetProductsQuery({ pageNumber });
   const { products = [] } = data || {};
- console.log(data?.page);
+
   return (
     <>
       {isLoading ? (
@@ -35,6 +36,7 @@ console.log(pageNumber);
               </Col>
             ))}
           </Row>
+          <Paginate pages={data?.pages} page={data?.page} />
         </>
       )}
     </>

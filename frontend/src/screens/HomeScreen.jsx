@@ -7,6 +7,7 @@ import Message from "../components/Message";
 import Product from "../components/Product";
 import { useGetProductsQuery } from "../slices/productsApiSlice";
 import Paginate from "../components/Paginate";
+import ProductCarousel from "../components/ProductCarousel";
 
 const HomeScreen = () => {
   const { pageNumber, keyword } = useParams();
@@ -22,16 +23,17 @@ const HomeScreen = () => {
 
   return (
     <>
-      {keyword ? (
+      {!keyword ? (
+        <ProductCarousel />
+      ) : (
         <>
           <Link to='/' className='btn btn-light mb-4'>
             Go Back
           </Link>
           <h1>Search Results</h1>
         </>
-      ) : (
-        <h1>Latest Products</h1>
       )}
+
       {isLoading ? (
         <Loader />
       ) : error ? (
@@ -40,6 +42,7 @@ const HomeScreen = () => {
         </Message>
       ) : (
         <>
+        {!keyword && <h1>Latest Products</h1>}
           <Row>
             {products.map((product) => (
               <Col key={product._id} sm={12} md={6} lg={4} xl={3}>

@@ -5,8 +5,7 @@ import express from "express";
 const router = express.Router();
 
 // If production, use Render server's data folder, else use local uploads folder
-const uploadFolder =
-  process.env.NODE_ENV === "production" ? "/var/data/uploads/" : "uploads/";
+const uploadFolder = "uploads/";
 
 // Set Storage Engine
 const storage = multer.diskStorage({

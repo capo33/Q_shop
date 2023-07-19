@@ -57,6 +57,11 @@ router.post("/", upload.single("image"), (req, res) => {
     message: "Image Uploaded Successfully",
     image: `/${req.file.path.replace(/\\/g, "/")}`,
   });
+  // res.send({
+  //   message: 'Image Uploaded Successfully',
+  //   image: `/images/${req.file.filename}`,
+  // });
+
 });
 
 export default router;
